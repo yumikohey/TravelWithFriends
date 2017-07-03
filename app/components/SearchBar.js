@@ -24,17 +24,11 @@ export default class SearchBar extends Component {
 	}
 
 	showMoreSearchBar() {
-		this.setState({
-			showSearchInputField: 'none',
-			showCityAndDays: 'flex',
-		})
+		this.props.showMoreSearchBar();
 	}
 
 	showLessSearchBar() {
-		this.setState({
-			showSearchInputField: 'flex',
-			showCityAndDays: 'none',
-		})
+		this.props.showLessSearchBar();
 	}
 
 	showSearchCityLayout() {
@@ -43,7 +37,8 @@ export default class SearchBar extends Component {
 	}
 
 	render() {
-		const { showSearchInputField, showCityAndDays } = this.state;
+		const { showSearchInputField, showCityAndDays, selectedCity, selectedState } = this.props;
+		const showSelectedCityStateText = selectedCity !== '' ? [selectedCity, selectedState].join(', ') : 'City';
 		return (
 			<View style={styles.flexRow}>
 			    <View style={{display: showSearchInputField, width: '100%', height: 100, backgroundColor: '#0090FF'}}>
@@ -83,14 +78,12 @@ export default class SearchBar extends Component {
 							  />
 						<View style={styles.heightFifty}>
 							<Text style={styles.searchBarPlaceholder}>
-								City
+								{showSelectedCityStateText}
 							</Text>
 						</View>
 						</View>
 					</TouchableHighlight>
-					<TouchableHighlight style={styles.secondSearchTouchable}
-						onPress={() => this.showMoreSearchBar()}
-					>
+					<TouchableHighlight style={styles.secondSearchTouchable}>
 						<View style={styles.flexRowFullWidth}>
 							<Icon
 								style={styles.searchBarIcons}
@@ -100,7 +93,7 @@ export default class SearchBar extends Component {
 							  />
 							<View style={styles.heightFifty}>
 								<Text style={styles.searchBarPlaceholder}>
-									Number of Days
+									Number of Days:
 								</Text>
 							</View>
 						</View>
