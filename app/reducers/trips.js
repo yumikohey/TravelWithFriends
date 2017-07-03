@@ -3,6 +3,7 @@ import * as types from '../actions/types';
 
 const initialState = {
 	selectedCity: '',
+	selectedState: '',
 	searchCities: ['San Francisco, CA', 'Los Angeles, CA', 'New York, NY', 'Boston, MA'],
 }
 export const trips = createReducer(initialState, {
@@ -12,4 +13,7 @@ export const trips = createReducer(initialState, {
 		}
 		return initialState;
 	},
+	[types.SELECTED_CITY_STATE](state, action) {
+		return Object.assign({}, state, { selectedCity: action.data.city, selectedState: action.data.state });
+	}
 });

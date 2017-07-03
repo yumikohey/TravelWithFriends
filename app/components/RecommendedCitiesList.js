@@ -20,7 +20,6 @@ export default class RecommendedCitiesList extends Component {
 		super(props);
 	}
 	render() {
-		console.log(this.props.searchCities);
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		const citiesArray = ds.cloneWithRows(this.props.searchCities);
 		const { searchCity, dispatch, searchCities } = this.props;
@@ -28,7 +27,14 @@ export default class RecommendedCitiesList extends Component {
 			<ListView
 			  style={styles.listCitiesBg}
 			  dataSource={citiesArray}
-			  renderRow={(data, rowId) => <RecommendedCityRow data={data} rowId={rowId}/>}
+			  renderRow={(data, rowId) =>
+			  	<RecommendedCityRow 
+			  	    data={data} 
+			  	    rowId={rowId}
+			  	    selectedCityAndState={this.props.selectedCityAndState}
+			  	    listRecommendedCities={this.props.listRecommendedCities}
+			  	    dispatch={dispatch}
+			  	/>}
 			  renderSeparator={(sectionId, rowId) => <View key={sectionId} style={styles.separator} />}
 			  renderHeader={() => <SearchCityInputField searchCity={searchCity} dispatch={dispatch} />}
 			/>

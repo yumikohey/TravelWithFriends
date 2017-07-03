@@ -38,7 +38,8 @@ export default class SearchBar extends Component {
 	}
 
 	showSearchCityLayout() {
-		this.props.listRecommendedCities();
+		const { dispatch } = this.props;
+		this.props.listRecommendedCities(true, dispatch);
 	}
 
 	render() {

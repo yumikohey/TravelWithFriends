@@ -10,9 +10,8 @@ export function setTab(tabIndex) {
 }
 
 //Page state
-export function listRecommendedCities() {
-	return (dispatch, getState) => {
-		const { showRecommendedCitiesList } = getState();
-		dispatch(Object.assign( { type: types.LIST_RECOMMENDED_CITIES }, { showRecommendedCitiesList: !showRecommendedCitiesList } ));
+export function listRecommendedCities(toShow, dispatch) {
+	return (dispatch) => {
+		dispatch(Object.assign( { type: types.LIST_RECOMMENDED_CITIES }, { showRecommendedCitiesList: toShow } ));
 	}
 }

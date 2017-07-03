@@ -23,8 +23,9 @@ export function setSearchCities(cityState) {
 	}
 }
 
-// export function addRecipe() {
-// 	return {
-// 		type: types.ADD_RECIPE
-// 	}
-// }
+export function selectedCityAndState(data) {
+	return {
+		type: types.SELECTED_CITY_STATE,
+		data
+	}
+}
