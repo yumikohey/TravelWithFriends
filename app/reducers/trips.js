@@ -16,5 +16,8 @@ export const trips = createReducer(initialState, {
 	},
 	[types.SELECTED_CITY_STATE](state, action) {
 		return Object.assign({}, state, { selectedCity: action.data.city, selectedState: action.data.state });
-	}
+	},
+	[types.UPDATE_TRAVEL_DURATION](state, action) {
+		return Object.assign({}, state, { travelDuration: action.days });
+	},
 });

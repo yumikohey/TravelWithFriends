@@ -29,3 +29,10 @@ export function selectedCityAndState(data) {
 		data
 	}
 }
+
+export function updateTravelDuration(days) {
+	return {
+		type: types.UPDATE_TRAVEL_DURATION,
+		days
+	}
+}

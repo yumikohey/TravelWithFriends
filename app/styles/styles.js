@@ -38,20 +38,29 @@ export default styles = StyleSheet.create({
   	width: '100%',
   	flex: 1,
   	flexDirection: 'row',
+    paddingLeft: '2%',
+    paddingRight: '2%',
+  },
+  flexRowFullWidthHeightFifty: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'row',
+    height: 50,
+    paddingLeft: '2%',
+    paddingRight: '0.5%',
   },
   searchBarIcons: {
   	height: 50,
-  	marginLeft: '2%',
   	marginTop: '1.5%',
   },
   heightFifty: {
   	height: 50
   },
   searchBarPlaceholder: {
-	color: 'white',
- 	paddingLeft: '2.5%',
- 	paddingTop: '4%',
- 	fontSize: 16,
+  	color: 'white',
+   	paddingLeft: '2.5%',
+   	paddingTop: '4%',
+   	fontSize: 16,
   },
   backwardArrow: {
   	height: 25,
