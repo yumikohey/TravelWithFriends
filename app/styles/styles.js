@@ -46,8 +46,6 @@ export default styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     height: 50,
-    paddingLeft: '2%',
-    paddingRight: '0.5%',
   },
   searchBarIcons: {
   	height: 50,

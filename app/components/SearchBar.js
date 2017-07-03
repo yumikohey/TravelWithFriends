@@ -23,6 +23,16 @@ export default class SearchBar extends Component {
 		}
 	}
 
+	componentDidUpdate() {
+		const { selectedCity, selectedState, travelDuration, fullTripDetails } = this.props;
+		console.log(selectedCity);
+		console.log(selectedState);
+		console.log(travelDuration);
+		if (selectedCity && selectedState && travelDuration > 0) {
+			this.props.getFullTripDetails(selectedCity, selectedState, travelDuration);
+		}
+	}
+
 	showMoreSearchBar() {
 		this.props.showMoreSearchBar();
 	}
@@ -48,13 +58,11 @@ export default class SearchBar extends Component {
 	render() {
 		const { showSearchInputField, showCityAndDays, selectedCity, selectedState, travelDuration } = this.props;
 		const showSelectedCityStateText = selectedCity !== '' ? [selectedCity, selectedState].join(', ') : 'City';
-		const showNumberOfDays = `Number of Days: ${travelDuration}`;
-		console.log(showNumberOfDays);
-		console.log(travelDuration);
+
 		function travelDaysAddMinusGroupButtons (updateTravelDurationAction, updateTravelDuration, travelDuration) {
 			const addButton = <Icon name='add-circle-outline' color='white' size={40} onPress={() => updateTravelDuration(updateTravelDurationAction, true, travelDuration)}/>;
 			const minusButton = <Icon name='remove-circle-outline' color='white' size={40} onPress={() => updateTravelDuration(updateTravelDurationAction, false, travelDuration)}/>;
-			if (travelDuration === 1) {
+			if (travelDuration === 0 || travelDuration === 1) {
 				return (
 					<View style={{flex: 1, flexDirection: 'row-reverse'}}>
 						{addButton}
@@ -130,7 +138,7 @@ export default class SearchBar extends Component {
 								<View style={styles.flexRowFullWidth}>
 									<View>
 										<Text style={styles.searchBarPlaceholder}>
-											{showNumberOfDays}
+											Number of Days: {travelDuration}
 										</Text>
 									</View>
 									{travelDaysAddMinusGroupButtons(this.props.updateTravelDuration, this.updateTravelDuration, travelDuration)}

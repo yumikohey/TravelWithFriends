@@ -5,7 +5,8 @@ const initialState = {
 	selectedCity: '',
 	selectedState: '',
 	searchCities: ['San Francisco, CA', 'Los Angeles, CA', 'New York, NY', 'Boston, MA'],
-	travelDuration: 1,
+	travelDuration: 0,
+	fullTripDetails: {},
 }
 export const trips = createReducer(initialState, {
 	[types.SET_SEARCH_CITIES](state, action) {

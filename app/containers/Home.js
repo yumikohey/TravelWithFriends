@@ -44,6 +44,7 @@ function mapStateToProps(state) {
 		showSearchInputField: state.tabs.showSearchInputField,
 		showCityAndDays: state.tabs.showCityAndDays,
 		travelDuration: state.trips.travelDuration,
+		fullTripDetails: state.trips.fullTripDetails,
 	}
 }
 
