@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import { Icon } from 'react-native-elements';
+import styles from '../styles/styles';
 
 const {
 	ScrollView,
@@ -8,7 +9,6 @@ const {
 	TextInput,
 	Image,
 	TouchableHighlight,
-	StyleSheet,
 	Text,
 	ListView,
 } = ReactNative;
@@ -45,24 +45,20 @@ export default class SearchBar extends Component {
 	render() {
 		const { showSearchInputField, showCityAndDays } = this.state;
 		return (
-			<View style={{flex: 1, flexDirection: 'row'}}>
+			<View style={styles.flexRow}>
 			    <View style={{display: showSearchInputField, width: '100%', height: 100, backgroundColor: '#0090FF'}}>
-				  	<TouchableHighlight style={{width: '90%', height: 50, marginTop: '7.5%', marginRight: '5%', marginLeft: '5%', backgroundColor: '#00AFFF', borderRadius: 5}}
+				  	<TouchableHighlight style={styles.firstSearchTouchable}
 				  		onPress={() => this.showMoreSearchBar()}
 				  	>
-				  		<View style={{width: '100%', flex: 1, flexDirection: 'row'}}>
+				  		<View style={styles.flexRowFullWidth}>
 					  		<Icon
-					  			style={{height: 50, marginLeft: '2%', marginTop: '1.5%'}}
+					  			style={styles.searchBarIcons}
 								name='search'
 								color='white'
 								size={40}
 					  		  />
-							<View style={{height: 50}}>
-								<Text style={{
-												color: 'white',
-											 	paddingLeft: '2.5%',
-											 	paddingTop: '4%',
-											 	fontSize: 16 }}>
+							<View style={styles.heightFifty}>
+								<Text style={styles.searchBarPlaceholder}>
 									City · Number of Days
 								</Text>
 							</View>
@@ -70,48 +66,40 @@ export default class SearchBar extends Component {
 				  	</TouchableHighlight>
 			    </View>
 			    <View style={{display: showCityAndDays, width: '100%', height: 200, backgroundColor: '#0090FF'}}>
-			    	<TouchableHighlight style={{height: 25, marginTop: '7.5%'}} onPress={() => this.showLessSearchBar() }>
+			    	<TouchableHighlight style={styles.backwardArrow} onPress={() => this.showLessSearchBar() }>
 			    		<View>
 			    			<Icon name='keyboard-arrow-up' color='white'/>
 			    		</View>
 			    	</TouchableHighlight>
-					<TouchableHighlight style={{width: '90%', height: 50, marginTop: '2.5%', marginRight: '5%', marginLeft: '5%', backgroundColor: '#00AFFF', borderRadius: 5}}
+					<TouchableHighlight style={styles.secondSearchTouchable}
 						onPress={() => this.showSearchCityLayout()}
 					>
-						<View style={{width: '100%', flex: 1, flexDirection: 'row'}}>
+						<View style={styles.flexRowFullWidth}>
 							<Icon
-								style={{height: 50, marginLeft: '2%', marginTop: '1.5%'}}
+								style={styles.searchBarIcons}
 							name='room'
 							color='white'
 							size={40}
 							  />
-						<View style={{height: 50}}>
-							<Text style={{
-											color: 'white',
-										 	paddingLeft: '2.5%',
-										 	paddingTop: '4%',
-										 	fontSize: 16 }}>
+						<View style={styles.heightFifty}>
+							<Text style={styles.searchBarPlaceholder}>
 								City
 							</Text>
 						</View>
 						</View>
 					</TouchableHighlight>
-					<TouchableHighlight style={{width: '90%', height: 50, marginTop: '2.5%', marginRight: '5%', marginLeft: '5%', backgroundColor: '#00AFFF', borderRadius: 5}}
+					<TouchableHighlight style={styles.secondSearchTouchable}
 						onPress={() => this.showMoreSearchBar()}
 					>
-						<View style={{width: '100%', flex: 1, flexDirection: 'row'}}>
+						<View style={styles.flexRowFullWidth}>
 							<Icon
-								style={{height: 50, marginLeft: '2%', marginTop: '1.5%'}}
+								style={styles.searchBarIcons}
 							name='date-range'
 							color='white'
 							size={40}
 							  />
-							<View style={{height: 50}}>
-								<Text style={{
-												color: 'white',
-											 	paddingLeft: '2.5%',
-											 	paddingTop: '4%',
-											 	fontSize: 16 }}>
+							<View style={styles.heightFifty}>
+								<Text style={styles.searchBarPlaceholder}>
 									Number of Days
 								</Text>
 							</View>

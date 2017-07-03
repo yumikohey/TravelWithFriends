@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import SearchBar from '../components/SearchBar';
 import RecommendedCitiesList from '../components/RecommendedCitiesList';
+import styles from '../styles/styles';
 
 const {
 	ScrollView,
@@ -11,7 +12,6 @@ const {
 	TextInput,
 	Image,
 	TouchableHighlight,
-	StyleSheet,
 	Text,
 	ListView,
 } = ReactNative;
@@ -23,7 +23,7 @@ class Home extends Component {
 
 	renderScene(component) {
 		return (
-			<View style={{flex: 1}}>
+			<View style={styles.defaultFlex}>
 				{ React.createElement(component, this.props) }
 			</View>
 		)

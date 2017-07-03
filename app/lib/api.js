@@ -24,7 +24,7 @@ class Api {
   }
 
   static xhr(route, params, verb) {
-    const host = 'http://www.recipepuppy.com'
+    const host = 'http://174.129.85.123/'
     const url = `${host}${route}`
     let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null );
     options.headers = Api.headers()

@@ -3,6 +3,7 @@ import ReactNative from 'react-native';
 import { Icon } from 'react-native-elements';
 import RecommendedCityRow from './RecommendedCityRow';
 import SearchCityInputField from './SearchCityInputField';
+import styles from '../styles/styles';
 
 const {
 	ScrollView,
@@ -10,21 +11,9 @@ const {
 	TextInput,
 	Image,
 	TouchableHighlight,
-	StyleSheet,
 	Text,
 	ListView
 } = ReactNative;
-
-const styles = StyleSheet.create({
-  separator: {
-    flex: 1,
-    height: 2,
-    backgroundColor: '#75C3FF',
-    width: '90%',
-    marginLeft: '5%',
-    marginRight: '5%',
-  },
-});
 
 export default class RecommendedCitiesList extends Component {
 	constructor(props) {
@@ -38,7 +27,7 @@ export default class RecommendedCitiesList extends Component {
 		const { citiesArray } = this.state;
 		return(
 			<ListView
-			  style={{display: 'flex', flex: 1, backgroundColor: '#0090FF'}}
+			  style={styles.listCitiesBg}
 			  dataSource={citiesArray}
 			  renderRow={(data) => <RecommendedCityRow data={data} />}
 			  renderSeparator={(sectionId, rowId) => <View key={sectionId} style={styles.separator} />}

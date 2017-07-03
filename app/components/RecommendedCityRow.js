@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import { Icon } from 'react-native-elements';
+import styles from '../styles/styles';
 
 const {
 	ScrollView,
@@ -8,7 +9,6 @@ const {
 	TextInput,
 	Image,
 	TouchableHighlight,
-	StyleSheet,
 	Text,
 	ListView,
 } = ReactNative;
@@ -27,13 +27,9 @@ export default class SearchBar extends Component {
 		return (
 			//update onPress background color
 			<TouchableHighlight onPress={() => this.console()}>
-				<View style={{flex: 1, padding: 12, flexDirection: 'row', alignItems: 'center'}}>
+				<View style={styles.listViewRow}>
 					<Text key={data.id} 
-					      style={{
-					      	marginLeft: '2.5%',
-					        color: 'white',
-					        fontSize: 16,
-					    	fontWeight: 'bold'}}
+					      style={styles.listViewRowText}
 					>
 						{data.city}
 					</Text>
