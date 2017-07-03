@@ -16,6 +16,13 @@ const {
 export default class SearchBar extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			inputCity: '',
+		}
+	}
+
+	userInputCity(city) {
+		this.props.searchCity(city, this.props.dispatch);
 	}
 
 	render() {
@@ -30,8 +37,11 @@ export default class SearchBar extends Component {
 								color='white'
 								size={40}
 					  		  />
-							<TextInput style={styles.searchInputTextField}
-								placeholder='City'>
+							<TextInput
+							    style={styles.searchInputTextField}
+								placeholder='City'
+								onChangeText={(text) => this.userInputCity(text)}
+							>
 							</TextInput>
 				  		</View>
 				  	</View>

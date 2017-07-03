@@ -10,7 +10,6 @@ export function setTab(tabIndex) {
 }
 
 //Page state
-
 export function listRecommendedCities() {
 	return (dispatch, getState) => {
 		const { showRecommendedCitiesList } = getState();

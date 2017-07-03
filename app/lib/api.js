@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+const host = 'http://174.129.85.123/';
+
 class Api {
   static headers() {
     return {
@@ -24,17 +28,14 @@ class Api {
   }
 
   static xhr(route, params, verb) {
-    const host = 'http://174.129.85.123/'
     const url = `${host}${route}`
-    let options = Object.assign({ method: verb }, params ? { body: JSON.stringify(params) } : null );
-    options.headers = Api.headers()
-    return fetch(url, options).then( resp => {
-      let json = resp.json();
-      if (resp.ok) {
-        return json
-      }
-      return json.then(err => {throw err});
-    }).then( json => json.results );
+    let options = Object.assign({url}, { method: verb }, params ? { body: JSON.stringify(params) } : null );
+    return axios(options)
+      .then( res => {
+        return res.data;
+      }).catch(err => {
+        console.log(err);
+      });
   }
 }
 export default Api

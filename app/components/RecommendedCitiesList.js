@@ -18,20 +18,19 @@ const {
 export default class RecommendedCitiesList extends Component {
 	constructor(props) {
 		super(props);
-		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-		this.state = {
-			citiesArray: ds.cloneWithRows([{id: 1, city: 'San Francisco'}, {id: 2, city: 'Los Angeles'}, {id:3, city: 'Chicago'}, {id:4, city: 'New York'}, {id:5, city: 'Boston'}, {id:6, city:'San Diego'}]),
-		}
 	}
 	render() {
-		const { citiesArray } = this.state;
+		console.log(this.props.searchCities);
+		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+		const citiesArray = ds.cloneWithRows(this.props.searchCities);
+		const { searchCity, dispatch, searchCities } = this.props;
 		return(
 			<ListView
 			  style={styles.listCitiesBg}
 			  dataSource={citiesArray}
-			  renderRow={(data) => <RecommendedCityRow data={data} />}
+			  renderRow={(data, rowId) => <RecommendedCityRow data={data} rowId={rowId}/>}
 			  renderSeparator={(sectionId, rowId) => <View key={sectionId} style={styles.separator} />}
-			  renderHeader={() => <SearchCityInputField />}
+			  renderHeader={() => <SearchCityInputField searchCity={searchCity} dispatch={dispatch} />}
 			/>
 		)
 	}

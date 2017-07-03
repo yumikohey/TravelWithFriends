@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import * as recipesReducer from './recipes';
+import * as tripsReducer from './trips';
 import * as navigationReducer from './navigation';
 
 export default combineReducers(Object.assign(
-	recipesReducer,
+	tripsReducer,
 	navigationReducer
 ));

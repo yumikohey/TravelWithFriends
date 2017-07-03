@@ -38,6 +38,7 @@ class Home extends Component {
 function mapStateToProps(state) {
 	return {
 		selectedCity: '',
+		searchCities: state.trips.searchCities,
 		showRecommendedCitiesList: state.tabs.showRecommendedCitiesList
 	}
 }

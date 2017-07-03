@@ -23,15 +23,15 @@ export default class SearchBar extends Component {
 	}
 
 	render() {
-		const { data } = this.props;
+		const { data, rowID } = this.props;
 		return (
 			//update onPress background color
 			<TouchableHighlight onPress={() => this.console()}>
 				<View style={styles.listViewRow}>
-					<Text key={data.id} 
+					<Text key={rowID} 
 					      style={styles.listViewRowText}
 					>
-						{data.city}
+						{data}
 					</Text>
 				</View>
 			</TouchableHighlight>

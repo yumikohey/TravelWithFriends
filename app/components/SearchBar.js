@@ -38,7 +38,6 @@ export default class SearchBar extends Component {
 	}
 
 	showSearchCityLayout() {
-		console.log('hi');
 		this.props.listRecommendedCities();
 	}
 
