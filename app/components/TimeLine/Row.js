@@ -17,7 +17,7 @@ export default class Row extends Component {
 
 	render() {
 		const {completed, min, title, description, day} = this.props;
-		const colors=['#E37059', '#EFADA0', '#96DBE4', '#93DAAB', '#24828F'];
+		const colors=['#007fff', '#2d6ef8', '#9755de', '#c835b9', '#e3088d'];
 		const selectedColor=colors[day];
 		return (
 			<View style={styles.rowContainer}>

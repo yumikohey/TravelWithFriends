@@ -38,8 +38,8 @@ export default styles = StyleSheet.create({
     height: 150,
   },
   rowDate: {
-    fontSize: 10,
-    color: '#46D2B3',
+    fontSize: 12,
+    fontWeight: 'bold'
   },
   rowTitle: {
     fontSize: 20,
