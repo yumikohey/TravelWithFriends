@@ -25,11 +25,15 @@ export default class SearchBar extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		const { selectedCity, selectedState, travelDuration, fullTripDetails } = this.props;
-		const prevFullTripDetails = prevProps.fullTripDetails;
-		if (selectedCity && selectedState && travelDuration > 0 && fullTripDetails !== prevFullTripDetails ) {
+		const { selectedCity, selectedState, travelDuration, fullTripDetails, fullTripId } = this.props;
+		const prevTravelDuration = prevProps.travelDuration;
+		const prevSelectedCity = prevProps.selectedCity;
+		const prevFullTripId = prevProps.fullTripId;
+
+		if ( (selectedCity !== prevSelectedCity) || ((travelDuration > 0) && (travelDuration !== prevTravelDuration))) {
 			this.props.getFullTripDetails(selectedCity, selectedState, travelDuration);
 		}
+		return fullTripId !== prevFullTripId;
 	}
 
 	showMoreSearchBar() {
@@ -62,6 +66,8 @@ export default class SearchBar extends Component {
 			selectedState,
 			travelDuration,
 			scrollViewMarginTop,
+			fullTripDetails,
+			fullTripId,
 		} = this.props;
 
 		const showSelectedCityStateText = selectedCity !== '' ? [selectedCity, selectedState].join(', ') : 'City';
@@ -90,6 +96,7 @@ export default class SearchBar extends Component {
 				</View>
 			)
 		}
+		console.log("re-rendered");
 		return (
 			<View>
 				<View style={styles.flexRow}>
@@ -158,7 +165,7 @@ export default class SearchBar extends Component {
 				  	</View>
 				</View>
 				<ScrollView style={{marginTop: scrollViewMarginTop}}>
-					<TripTimeline />
+					<TripTimeline fullTripDetails={fullTripDetails} fullTripId={fullTripId}/>
 				</ScrollView>
 			</View>
 		)

@@ -17,7 +17,7 @@ export function showMoreSearchBar() {
 			{ 
 				showSearchInputField: 'none',
 				showCityAndDays: 'flex',
-				scrollViewMarginTop: -300
+				scrollViewMarginTop: -240
 			}
 		));
 	}

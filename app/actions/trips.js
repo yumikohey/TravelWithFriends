@@ -20,8 +20,7 @@ export function getFullTripDetails(city, state, days) {
 			`n_days=${days}`
 		].join('&');
 		return Api.get(`full_trip_search/?${params}`).then(res => {
-			console.log(res);
-			// dispatch(setFullTripDetails(res));
+			dispatch(setFullTripDetails(res.full_trip_details, res.full_trip_id));
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -49,6 +48,10 @@ export function updateTravelDuration(days) {
 	}
 }
 
-export function setFullTripDetails(res) {
-	console.log(res);
+export function setFullTripDetails(fullTripDetails, fullTripId) {
+	return {
+		type: types.SET_FULL_TRIP_DETAILS,
+		fullTripDetails,
+		fullTripId,
+	}
 }
