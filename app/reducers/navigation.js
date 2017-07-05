@@ -13,6 +13,7 @@ const initialState = {
 	showRecommendedCitiesList: false,
 	showSearchInputField: 'flex',
 	showCityAndDays: 'none',
+	scrollViewMarginTop: -500
 }
 export const tabs = createReducer(initialState, {
 	[types.SET_TAB](state, action) {
@@ -22,6 +23,10 @@ export const tabs = createReducer(initialState, {
 		return Object.assign({}, state, { showRecommendedCitiesList: action.showRecommendedCitiesList })
 	},
 	[types.SET_SEARCH_BAR_STATE](state, action) {
-		return Object.assign({}, state, { showSearchInputField: action.showSearchInputField, showCityAndDays: action.showCityAndDays })
+		return Object.assign({}, state, { 
+			showSearchInputField: action.showSearchInputField, 
+			showCityAndDays: action.showCityAndDays,
+			scrollViewMarginTop: action.scrollViewMarginTop
+		})
 	}
 });

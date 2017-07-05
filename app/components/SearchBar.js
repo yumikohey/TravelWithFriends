@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import { Icon } from 'react-native-elements';
 import styles from '../styles/styles';
+import TripTimeline from './TripTimeline';
 
 const {
 	ScrollView,
@@ -23,12 +24,10 @@ export default class SearchBar extends Component {
 		}
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps, prevState) {
 		const { selectedCity, selectedState, travelDuration, fullTripDetails } = this.props;
-		console.log(selectedCity);
-		console.log(selectedState);
-		console.log(travelDuration);
-		if (selectedCity && selectedState && travelDuration > 0) {
+		const prevFullTripDetails = prevProps.fullTripDetails;
+		if (selectedCity && selectedState && travelDuration > 0 && fullTripDetails !== prevFullTripDetails ) {
 			this.props.getFullTripDetails(selectedCity, selectedState, travelDuration);
 		}
 	}
@@ -56,8 +55,17 @@ export default class SearchBar extends Component {
 	}
 
 	render() {
-		const { showSearchInputField, showCityAndDays, selectedCity, selectedState, travelDuration } = this.props;
+		const { 
+			showSearchInputField,
+			showCityAndDays,
+			selectedCity,
+			selectedState,
+			travelDuration,
+			scrollViewMarginTop,
+		} = this.props;
+
 		const showSelectedCityStateText = selectedCity !== '' ? [selectedCity, selectedState].join(', ') : 'City';
+		const showCityAndDaysText = (selectedCity !== '' && travelDuration > 0) ? `${selectedCity}, ${selectedState} · ${travelDuration} day(s)` : 'City · Number of Days';
 
 		function travelDaysAddMinusGroupButtons (updateTravelDurationAction, updateTravelDuration, travelDuration) {
 			const addButton = <Icon name='add-circle-outline' color='white' size={40} onPress={() => updateTravelDuration(updateTravelDurationAction, true, travelDuration)}/>;
@@ -83,70 +91,75 @@ export default class SearchBar extends Component {
 			)
 		}
 		return (
-			<View style={styles.flexRow}>
-			    <View style={{display: showSearchInputField, width: '100%', height: 100, backgroundColor: '#0090FF'}}>
-				  	<TouchableHighlight style={styles.firstSearchTouchable}
-				  		onPress={() => this.showMoreSearchBar()}
-				  	>
-				  		<View style={styles.flexRowFullWidth}>
-					  		<Icon
-					  			style={styles.searchBarIcons}
-								name='search'
+			<View>
+				<View style={styles.flexRow}>
+				    <View style={{display: showSearchInputField, width: '100%', height: 100, backgroundColor: '#0090FF'}}>
+					  	<TouchableHighlight style={styles.firstSearchTouchable}
+					  		onPress={() => this.showMoreSearchBar()}
+					  	>
+					  		<View style={styles.flexRowFullWidth}>
+						  		<Icon
+						  			style={styles.searchBarIcons}
+									name='search'
+									color='white'
+									size={40}
+						  		  />
+								<View style={styles.heightFifty}>
+									<Text style={styles.searchBarPlaceholder}>
+										{showCityAndDaysText}
+									</Text>
+								</View>
+					  		</View>
+					  	</TouchableHighlight>
+				    </View>
+				    <View style={{display: showCityAndDays, width: '100%', height: 200, backgroundColor: '#0090FF'}}>
+				    	<TouchableHighlight style={styles.backwardArrow} onPress={() => this.showLessSearchBar() }>
+				    		<View>
+				    			<Icon name='keyboard-arrow-up' color='white'/>
+				    		</View>
+				    	</TouchableHighlight>
+						<TouchableHighlight style={styles.secondSearchTouchable}
+							onPress={() => this.showSearchCityLayout()}
+						>
+							<View style={styles.flexRowFullWidth}>
+								<Icon
+									style={styles.searchBarIcons}
+								name='room'
 								color='white'
 								size={40}
-					  		  />
+								  />
 							<View style={styles.heightFifty}>
 								<Text style={styles.searchBarPlaceholder}>
-									City · Number of Days
+									{showSelectedCityStateText}
 								</Text>
 							</View>
-				  		</View>
-				  	</TouchableHighlight>
-			    </View>
-			    <View style={{display: showCityAndDays, width: '100%', height: 200, backgroundColor: '#0090FF'}}>
-			    	<TouchableHighlight style={styles.backwardArrow} onPress={() => this.showLessSearchBar() }>
-			    		<View>
-			    			<Icon name='keyboard-arrow-up' color='white'/>
-			    		</View>
-			    	</TouchableHighlight>
-					<TouchableHighlight style={styles.secondSearchTouchable}
-						onPress={() => this.showSearchCityLayout()}
-					>
-						<View style={styles.flexRowFullWidth}>
-							<Icon
-								style={styles.searchBarIcons}
-							name='room'
-							color='white'
-							size={40}
-							  />
-						<View style={styles.heightFifty}>
-							<Text style={styles.searchBarPlaceholder}>
-								{showSelectedCityStateText}
-							</Text>
-						</View>
-						</View>
-					</TouchableHighlight>
-					<TouchableHighlight style={styles.secondSearchTouchable}>
-						<View style={styles.flexRowFullWidth}>
-							<Icon
-								style={styles.searchBarIcons}
-							name='date-range'
-							color='white'
-							size={40}
-							  />
-							<View style={styles.flexRowFullWidthHeightFifty}>
-								<View style={styles.flexRowFullWidth}>
-									<View>
-										<Text style={styles.searchBarPlaceholder}>
-											Number of Days: {travelDuration}
-										</Text>
+							</View>
+						</TouchableHighlight>
+						<TouchableHighlight style={styles.secondSearchTouchable}>
+							<View style={styles.flexRowFullWidth}>
+								<Icon
+									style={styles.searchBarIcons}
+								name='date-range'
+								color='white'
+								size={40}
+								  />
+								<View style={styles.flexRowFullWidthHeightFifty}>
+									<View style={styles.flexRowFullWidth}>
+										<View>
+											<Text style={styles.searchBarPlaceholder}>
+												Number of Days: {travelDuration}
+											</Text>
+										</View>
+										{travelDaysAddMinusGroupButtons(this.props.updateTravelDuration, this.updateTravelDuration, travelDuration)}
 									</View>
-									{travelDaysAddMinusGroupButtons(this.props.updateTravelDuration, this.updateTravelDuration, travelDuration)}
 								</View>
 							</View>
-						</View>
-					</TouchableHighlight>
-			  	</View>
+						</TouchableHighlight>
+				  	</View>
+				</View>
+				<ScrollView style={{marginTop: scrollViewMarginTop}}>
+					<TripTimeline />
+				</ScrollView>
 			</View>
 		)
 	}

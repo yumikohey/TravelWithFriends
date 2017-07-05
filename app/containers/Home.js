@@ -45,6 +45,7 @@ function mapStateToProps(state) {
 		showCityAndDays: state.tabs.showCityAndDays,
 		travelDuration: state.trips.travelDuration,
 		fullTripDetails: state.trips.fullTripDetails,
+		scrollViewMarginTop: state.tabs.scrollViewMarginTop,
 	}
 }
 
